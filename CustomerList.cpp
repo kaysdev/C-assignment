@@ -37,7 +37,7 @@ void __fastcall TfrmCustomerList::FormCreate(TObject *Sender)
 	gridCustomerList->Cells[3][0] = "Mobile Number";
 	gridCustomerList->ColWidths[3] = 100;
 	int rowCounter = 1;
-
+	gridCustomerList->RowCount = ADOTable1->RecordCount+1;
 	//to fill customer data in the TStringGrid
 	while (!ADOTable1->Eof)
 	{
@@ -52,7 +52,7 @@ void __fastcall TfrmCustomerList::FormCreate(TObject *Sender)
 		rowCounter++;
 		ADOTable1->Next();
 	}
-	gridCustomerList->RowCount = rowCounter;
+
 	ADOTable1->First();
 }
 //---------------------------------------------------------------------------
