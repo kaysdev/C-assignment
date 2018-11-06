@@ -37,6 +37,26 @@ void __fastcall TfrmJob::FormShow(TObject *Sender)
 
 void __fastcall TfrmJob::btnSaveClick(TObject *Sender)
 {
+	if(txtJob->Text.Trim() == "")
+	{
+		ShowMessage("Please enter valid job number!");
+	}
+	else if(ddlCustomer->Text == "")
+	{
+        ShowMessage("Please select Customer!");
+    }
+	else if(memo1->Text.Trim() =="")
+	{
+        ShowMessage("Please enter valid job description!");
+	}
+	else if(ddlUser->Text == "")
+	{
+		ShowMessage("Please select Assigned To!");
+	}
+	else if(ddlStatus->Text == "")
+	{
+		ShowMessage("Please select Status!");
+    }
 	ShowMessage("Save Record!!!");
 }
 //---------------------------------------------------------------------------

@@ -758,6 +758,7 @@ object frmJob: TfrmJob
         Height = 89
         Lines.Strings = (
           'Memo1')
+        MaxLength = 500
         TabOrder = 0
       end
       object ddlStatus: TComboBox
@@ -781,6 +782,7 @@ object frmJob: TfrmJob
         Top = 16
         Width = 185
         Height = 21
+        MaxLength = 8
         NumbersOnly = True
         TabOrder = 3
       end
