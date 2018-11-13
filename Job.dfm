@@ -708,12 +708,50 @@ object frmJob: TfrmJob
     OnClick = btnSaveClick
   end
   object PageControl1: TPageControl
-    Left = 8
-    Top = 4
+    Left = 5
+    Top = 0
     Width = 317
     Height = 309
     ActivePage = TabSheet1
     TabOrder = 1
+    object TabSheet2: TTabSheet
+      Caption = 'Time Entry'
+      ImageIndex = 1
+      object lblStartTime: TLabel
+        Left = 20
+        Top = 16
+        Width = 49
+        Height = 13
+        Caption = 'Start Time'
+      end
+      object lblEndTime: TLabel
+        Left = 20
+        Top = 57
+        Width = 43
+        Height = 13
+        Caption = 'End Time'
+      end
+      object DateTimePicker1: TDateTimePicker
+        Left = 112
+        Top = 16
+        Width = 185
+        Height = 21
+        Date = 43396.504786087960000000
+        Time = 43396.504786087960000000
+        Kind = dtkTime
+        TabOrder = 0
+      end
+      object DateTimePicker2: TDateTimePicker
+        Left = 112
+        Top = 57
+        Width = 185
+        Height = 21
+        Date = 43396.504786087960000000
+        Time = 43396.504786087960000000
+        Kind = dtkTime
+        TabOrder = 1
+      end
+    end
     object TabSheet1: TTabSheet
       Caption = 'Detail'
       object lblCustomer: TLabel
@@ -756,26 +794,8 @@ object frmJob: TfrmJob
         Top = 93
         Width = 185
         Height = 89
-        Lines.Strings = (
-          'Memo1')
         MaxLength = 500
-        TabOrder = 0
-      end
-      object ddlStatus: TComboBox
-        Left = 112
-        Top = 202
-        Width = 185
-        Height = 21
         TabOrder = 1
-        Text = 'Select Status'
-      end
-      object ddlUser: TComboBox
-        Left = 112
-        Top = 248
-        Width = 185
-        Height = 21
-        TabOrder = 2
-        Text = 'Select Technician'
       end
       object txtJob: TEdit
         Left = 112
@@ -784,56 +804,45 @@ object frmJob: TfrmJob
         Height = 21
         MaxLength = 8
         NumbersOnly = True
-        TabOrder = 3
-      end
-    end
-    object TabSheet2: TTabSheet
-      Caption = 'Time Entry'
-      ImageIndex = 1
-      object lblStartTime: TLabel
-        Left = 20
-        Top = 16
-        Width = 49
-        Height = 13
-        Caption = 'Start Time'
-      end
-      object lblEndTime: TLabel
-        Left = 20
-        Top = 57
-        Width = 43
-        Height = 13
-        Caption = 'End Time'
-      end
-      object DateTimePicker1: TDateTimePicker
-        Left = 112
-        Top = 16
-        Width = 185
-        Height = 21
-        Date = 43396.504786087960000000
-        Time = 43396.504786087960000000
-        Kind = dtkTime
         TabOrder = 0
-      end
-      object DateTimePicker2: TDateTimePicker
-        Left = 112
-        Top = 57
-        Width = 185
-        Height = 21
-        Date = 43396.504786087960000000
-        Time = 43396.504786087960000000
-        Kind = dtkTime
-        TabOrder = 1
       end
     end
   end
   object ddlCustomer: TDBLookupComboBox
-    Left = 124
-    Top = 85
+    Left = 121
+    Top = 81
     Width = 185
     Height = 21
+    DataField = 'customer_id'
+    DataSource = DataSource_Job
+    KeyField = 'customer_id'
     ListField = 'first_name'
-    ListSource = DataSource1
+    ListSource = DataSource_Customer
     TabOrder = 2
+  end
+  object ddlStatus: TDBLookupComboBox
+    Left = 121
+    Top = 229
+    Width = 185
+    Height = 21
+    DataField = 'status_id'
+    DataSource = DataSource_Job
+    KeyField = 'status_id'
+    ListField = 'status_name'
+    ListSource = DataSource_Status
+    TabOrder = 3
+  end
+  object ddlAssigned: TDBLookupComboBox
+    Left = 121
+    Top = 272
+    Width = 185
+    Height = 21
+    DataField = 'assigned_to'
+    DataSource = DataSource_Job
+    KeyField = 'login_id'
+    ListField = 'user_name'
+    ListSource = DataSource_assigned
+    TabOrder = 4
   end
   object ADOConnection1: TADOConnection
     Connected = True
@@ -842,32 +851,58 @@ object frmJob: TfrmJob
       'True;User ID=sa;Initial Catalog=Test;Data Source=KAYS-LPT-15'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
-    Left = 72
-    Top = 168
+    Top = 24
   end
-  object ADOTable1: TADOTable
-    Connection = ADOConnection1
-    CursorType = ctStatic
-    TableName = 'login'
-    Left = 24
-    Top = 232
-  end
-  object ADOTable2: TADOTable
+  object ADOTable_customer: TADOTable
+    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'Customer'
     Left = 16
-    Top = 152
+    Top = 72
   end
-  object ADOTable3: TADOTable
+  object DataSource_Customer: TDataSource
+    DataSet = ADOTable_customer
+    Left = 16
+    Top = 128
+  end
+  object ADOTable_job: TADOTable
+    Active = True
     Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'Job'
+    Left = 32
+    Top = 176
+  end
+  object DataSource_Job: TDataSource
+    DataSet = ADOTable_job
+    Left = 24
+    Top = 224
+  end
+  object ADOTable_Status: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
     TableName = 'Status'
     Left = 16
+    Top = 280
+  end
+  object DataSource_Status: TDataSource
+    DataSet = ADOTable_Status
+    Left = 64
     Top = 288
   end
-  object DataSource1: TDataSource
-    DataSet = ADOTable2
-    Left = 24
-    Top = 24
+  object ADOTable_assigned: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'login'
+    Left = 80
+    Top = 184
+  end
+  object DataSource_assigned: TDataSource
+    DataSet = ADOTable_assigned
+    Left = 80
+    Top = 248
   end
 end

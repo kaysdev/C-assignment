@@ -695,6 +695,7 @@ object fmrJobList: TfmrJobList
     00FFFF0003FFFF8007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Button1: TButton
@@ -706,75 +707,15 @@ object fmrJobList: TfmrJobList
     TabOrder = 0
     OnClick = Button1Click
   end
-  object DBGrid1: TDBGrid
+  object gridJobList: TStringGrid
     Left = 8
-    Top = 39
+    Top = 48
     Width = 617
-    Height = 302
-    DataSource = DataSource1
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    Height = 291
+    ColCount = 8
+    RowCount = 1
+    FixedRows = 0
     TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    OnDblClick = DBGrid1DblClick
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'job_id'
-        Title.Caption = 'Job Id'
-        Width = 45
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'job_number'
-        Title.Caption = 'Job #'
-        Width = 50
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'job_description'
-        Title.Caption = 'Description'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'customer_name'
-        Title.Caption = 'Customer Name'
-        Width = 120
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'mobile_number'
-        Title.Caption = 'Mobile Number'
-        Width = 80
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'status_name'
-        Title.Caption = 'Status'
-        Width = 50
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'user_name'
-        Title.Caption = 'Technician'
-        Width = 120
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'time_spent'
-        Title.Caption = 'Time'
-        Visible = True
-      end>
   end
   object ADOConnection1: TADOConnection
     Connected = True
