@@ -4,6 +4,7 @@
 #pragma hdrstop
 
 #include "Job.h"
+#include "ConnectionDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -50,7 +51,7 @@ void __fastcall TfrmJob::btnSaveClick(TObject *Sender)
 						+ ddlStatus->KeyValue + ","
 						+ ddlAssigned->KeyValue + ");";
 		ADOQuery = new TADOQuery(this);
-		ADOQuery->Connection = ADOConnection1;
+		ADOQuery->Connection = DataModule1->DBConnection;
 
 		ADOQuery->Prepared = true;
 		ADOQuery->SQL->Clear();
@@ -73,10 +74,22 @@ void __fastcall TfrmJob::btnSaveClick(TObject *Sender)
 //empty form fields on form show
 void __fastcall TfrmJob::FormShow(TObject *Sender)
 {
-   txtJob->Text = "";
-   ddlCustomer->KeyValue = "";
-   ddlStatus->KeyValue = "";
-   ddlAssigned->KeyValue = "";
-   memo1->Text = "";
+	ADOTable_assigned->Active = false;
+	ADOTable_assigned->Active = true;
+
+	ADOTable_Status->Active = false;
+	ADOTable_Status->Active = true;
+
+	ADOTable_customer->Active = false;
+	ADOTable_customer->Active = true;
+
+	txtJob->Text = "";
+	ddlCustomer->KeyValue = "";
+	ddlStatus->KeyValue = "";
+	ddlAssigned->KeyValue = "";
+   	memo1->Text = "";
+
+
+
 }
 //---------------------------------------------------------------------------

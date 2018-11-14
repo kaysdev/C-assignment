@@ -16,7 +16,6 @@ class TfrmJob : public TForm
 {
 __published:	// IDE-managed Components
 	TButton *btnSave;
-	TADOConnection *ADOConnection1;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet2;
 	TLabel *lblStartTime;
@@ -33,8 +32,6 @@ __published:	// IDE-managed Components
 	TDBLookupComboBox *ddlCustomer;
 	TADOTable *ADOTable_customer;
 	TDataSource *DataSource_Customer;
-	TADOTable *ADOTable_job;
-	TDataSource *DataSource_Job;
 	TADOTable *ADOTable_Status;
 	TDataSource *DataSource_Status;
 	TDBLookupComboBox *ddlStatus;

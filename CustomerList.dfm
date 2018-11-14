@@ -695,7 +695,7 @@ object frmCustomerList: TfrmCustomerList
     00FFFF0003FFFF8007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   OldCreateOrder = False
   Position = poDesktopCenter
-  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object btnAddNew: TButton
@@ -724,20 +724,11 @@ object frmCustomerList: TfrmCustomerList
       64
       64)
   end
-  object ADOConnection1: TADOConnection
-    Connected = True
-    ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=Firewall#121;Persist Security Info=' +
-      'True;User ID=sa;Initial Catalog=Test;Data Source=KAYS-LPT-15'
-    LoginPrompt = False
-    Provider = 'SQLOLEDB.1'
-    Left = 192
-  end
   object ADOTable1: TADOTable
-    Active = True
-    Connection = ADOConnection1
+    Connection = DataModule1.DBConnection
     CursorType = ctStatic
     TableName = 'Customer'
-    Left = 264
+    Left = 240
+    Top = 16
   end
 end

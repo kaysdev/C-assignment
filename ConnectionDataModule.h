@@ -1,33 +1,21 @@
 //---------------------------------------------------------------------------
 
-#ifndef LoginH
-#define LoginH
+#ifndef ConnectionDataModuleH
+#define ConnectionDataModuleH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
-#include <Vcl.Controls.hpp>
-#include <Vcl.StdCtrls.hpp>
-#include <Vcl.Forms.hpp>
 #include <Data.DB.hpp>
 #include <Data.Win.ADODB.hpp>
-#include <Vcl.DBCtrls.hpp>
 //---------------------------------------------------------------------------
-class TfrmLogin : public TForm
+class TDataModule1 : public TDataModule
 {
 __published:	// IDE-managed Components
-	TLabel *lblUsername;
-	TLabel *lblPassword;
-	TEdit *txtPassword;
-	TButton *btnLogin;
-	TADOTable *ADOTable1;
-	TComboBox *ddlUser;
-	TADODataSet *ADODataSet1;
-	void __fastcall btnLoginClick(TObject *Sender);
-	void __fastcall FormShow(TObject *Sender);
+	TADOConnection *DBConnection;
 private:	// User declarations
 public:		// User declarations
-	__fastcall TfrmLogin(TComponent* Owner);
+	__fastcall TDataModule1(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TfrmLogin *frmLogin;
+extern PACKAGE TDataModule1 *DataModule1;
 //---------------------------------------------------------------------------
 #endif

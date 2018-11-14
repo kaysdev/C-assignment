@@ -814,7 +814,6 @@ object frmJob: TfrmJob
     Width = 185
     Height = 21
     DataField = 'customer_id'
-    DataSource = DataSource_Job
     KeyField = 'customer_id'
     ListField = 'first_name'
     ListSource = DataSource_Customer
@@ -826,7 +825,6 @@ object frmJob: TfrmJob
     Width = 185
     Height = 21
     DataField = 'status_id'
-    DataSource = DataSource_Job
     KeyField = 'status_id'
     ListField = 'status_name'
     ListSource = DataSource_Status
@@ -838,24 +836,13 @@ object frmJob: TfrmJob
     Width = 185
     Height = 21
     DataField = 'assigned_to'
-    DataSource = DataSource_Job
     KeyField = 'login_id'
     ListField = 'user_name'
     ListSource = DataSource_assigned
     TabOrder = 4
   end
-  object ADOConnection1: TADOConnection
-    Connected = True
-    ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=Firewall#121;Persist Security Info=' +
-      'True;User ID=sa;Initial Catalog=Test;Data Source=KAYS-LPT-15'
-    LoginPrompt = False
-    Provider = 'SQLOLEDB.1'
-    Top = 24
-  end
   object ADOTable_customer: TADOTable
-    Active = True
-    Connection = ADOConnection1
+    Connection = DataModule1.DBConnection
     CursorType = ctStatic
     TableName = 'Customer'
     Left = 16
@@ -866,22 +853,8 @@ object frmJob: TfrmJob
     Left = 16
     Top = 128
   end
-  object ADOTable_job: TADOTable
-    Active = True
-    Connection = ADOConnection1
-    CursorType = ctStatic
-    TableName = 'Job'
-    Left = 32
-    Top = 176
-  end
-  object DataSource_Job: TDataSource
-    DataSet = ADOTable_job
-    Left = 24
-    Top = 224
-  end
   object ADOTable_Status: TADOTable
-    Active = True
-    Connection = ADOConnection1
+    Connection = DataModule1.DBConnection
     CursorType = ctStatic
     TableName = 'Status'
     Left = 16
@@ -893,8 +866,7 @@ object frmJob: TfrmJob
     Top = 288
   end
   object ADOTable_assigned: TADOTable
-    Active = True
-    Connection = ADOConnection1
+    Connection = DataModule1.DBConnection
     CursorType = ctStatic
     TableName = 'login'
     Left = 80

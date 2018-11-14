@@ -753,13 +753,4 @@ object frmCustomer: TfrmCustomer
     TabOrder = 3
     OnClick = btnSaveClick
   end
-  object ADOConnection1: TADOConnection
-    ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=Firewall#121;Persist Security Info=' +
-      'True;User ID=sa;Initial Catalog=Test;Data Source=KAYS-LPT-15'
-    LoginPrompt = False
-    Provider = 'SQLOLEDB.1'
-    Left = 32
-    Top = 120
-  end
 end

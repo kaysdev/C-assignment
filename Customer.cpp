@@ -5,6 +5,7 @@
 
 #include "Customer.h"
 #include "CustomerList.h"
+#include "ConnectionDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -54,7 +55,7 @@ void __fastcall TfrmCustomer::btnSaveClick(TObject *Sender)
 							+ "', '" + this->txtLastName->Text + "','"
 							+ this->txtMobileNumber->Text + "');";
 			ADOQuery = new TADOQuery(this);
-			ADOQuery->Connection = ADOConnection1;
+			ADOQuery->Connection = DataModule1->DBConnection;
 
 			ADOQuery->Prepared = true;
 			ADOQuery->SQL->Clear();
@@ -63,10 +64,11 @@ void __fastcall TfrmCustomer::btnSaveClick(TObject *Sender)
 			{
 				ADOQuery->ExecSQL(); // this will save the customer record in database
 				ADOQuery->Close();
-				int rowCounter=1;
 				frmCustomerList->ADOTable1->Active = false;
 				frmCustomerList->ADOTable1->Active = true;
 				frmCustomerList->ADOTable1->Refresh();
+				int rowCounter = 1;
+				frmCustomerList->gridCustomerList->RowCount = frmCustomerList->ADOTable1->RecordCount+1;
 
 				while (!frmCustomerList->ADOTable1->Eof)
 				{
@@ -83,9 +85,9 @@ void __fastcall TfrmCustomer::btnSaveClick(TObject *Sender)
 								frmCustomerList->ADOTable1->
 								FieldByName("mobile_number")->AsString;
 					rowCounter++;
+
 					frmCustomerList->ADOTable1->Next();
 				}
-				frmCustomerList->gridCustomerList->RowCount = rowCounter;
 				frmCustomerList->gridCustomerList->Refresh();
 				frmCustomerList->ADOTable1->First();
 

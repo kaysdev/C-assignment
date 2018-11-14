@@ -5,6 +5,8 @@
 
 #include "Login.h"
 #include "Dashboard.h"
+
+#include "ConnectionDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"

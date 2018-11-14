@@ -5,6 +5,7 @@
 
 #include "CustomerList.h"
 #include "Customer.h"
+#include "ConnectionDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -25,9 +26,23 @@ void __fastcall TfrmCustomerList::btnAddNewClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmCustomerList::FormCreate(TObject *Sender)
+//on click on cell of TStringGrid
+void __fastcall TfrmCustomerList::gridCustomerListSelectCell(TObject *Sender,
+		int ACol, int ARow, bool &CanSelect)
 {
-    //to display the column name in TStringGrid
+	if(ARow != 0)  // if the header row is not selected
+	{
+		frmCustomer->txtFirstName->Text = gridCustomerList->Cells[1][ARow];
+		frmCustomer->txtLastName->Text = gridCustomerList->Cells[2][ARow];
+		frmCustomer->txtMobileNumber->Text = gridCustomerList->Cells[3][ARow];
+		frmCustomer->ShowModal();
+	}
+}
+void __fastcall TfrmCustomerList::FormShow(TObject *Sender)
+{
+	//to display the column name in TStringGrid
+	ADOTable1->Active = false;
+	ADOTable1->Active = true;
 	gridCustomerList->Cells[0][0] = "Customer Id";
 	gridCustomerList->ColWidths[0] = 80;
 	gridCustomerList->Cells[1][0] = "First Name";
@@ -57,15 +72,3 @@ void __fastcall TfrmCustomerList::FormCreate(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-//on click on cell of TStringGrid
-void __fastcall TfrmCustomerList::gridCustomerListSelectCell(TObject *Sender,
-		int ACol, int ARow, bool &CanSelect)
-{
-	if(ARow != 0)  // if the header row is not selected
-	{
-		frmCustomer->txtFirstName->Text = gridCustomerList->Cells[1][ARow];
-		frmCustomer->txtLastName->Text = gridCustomerList->Cells[2][ARow];
-		frmCustomer->txtMobileNumber->Text = gridCustomerList->Cells[3][ARow];
-		frmCustomer->ShowModal();
-	}
-}

@@ -15,14 +15,13 @@
 class TfrmCustomerList : public TForm
 {
 __published:	// IDE-managed Components
-	TADOConnection *ADOConnection1;
 	TButton *btnAddNew;
 	TStringGrid *gridCustomerList;
 	TADOTable *ADOTable1;
 	void __fastcall btnAddNewClick(TObject *Sender);
-	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall gridCustomerListSelectCell(TObject *Sender, int ACol, int ARow,
           bool &CanSelect);
+	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TfrmCustomerList(TComponent* Owner);

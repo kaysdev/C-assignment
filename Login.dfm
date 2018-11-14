@@ -739,23 +739,13 @@ object frmLogin: TfrmLogin
     Text = 'Select User'
   end
   object ADOTable1: TADOTable
-    Connection = ADOConnection1
+    Connection = DataModule1.DBConnection
     TableName = 'login'
     Left = 80
     Top = 64
   end
-  object ADOConnection1: TADOConnection
-    Connected = True
-    ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=Firewall#121;Persist Security Info=' +
-      'True;User ID=sa;Initial Catalog=Test;Data Source=KAYS-LPT-15'
-    LoginPrompt = False
-    Provider = 'SQLOLEDB.1'
-    Left = 168
-    Top = 64
-  end
   object ADODataSet1: TADODataSet
-    Connection = ADOConnection1
+    Connection = DataModule1.DBConnection
     CommandText = 
       'Select * from login where user_name= :user_name and password = :' +
       'password'

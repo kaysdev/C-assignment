@@ -20,7 +20,6 @@ __published:	// IDE-managed Components
 	TEdit *txtLastName;
 	TEdit *txtMobileNumber;
 	TButton *btnSave;
-	TADOConnection *ADOConnection1;
 	void __fastcall btnSaveClick(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
