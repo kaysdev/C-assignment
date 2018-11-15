@@ -26,17 +26,17 @@ void __fastcall TfrmLogin::btnLoginClick(TObject *Sender)
 		ShowMessage("Please select valid user and enter valid password!");
 	}
 	//when user is not selected
-	else if(this->ddlUser->Text=="Select User")
+	else if(this->ddlUser->Text == "Select User")
 	{
 		ShowMessage("Please select valid user!");
 	}
 	//when no password is entered
-	else if(this->txtPassword->Text=="")
+	else if(this->txtPassword->Text == "")
 	{
 		ShowMessage("Please enter valid password!");
 	}
 	//when both user and password is entered
-	else if(this->txtPassword->Text!="" && this->ddlUser->Text!="Select User")
+	else if(this->txtPassword->Text != "" && this->ddlUser->Text != "Select User")
 	{
 		ADODataSet1->Parameters->ParamByName("user_name")->Value = this->ddlUser->Text;
 		ADODataSet1->Parameters->ParamByName("password")->Value = this->txtPassword->Text;
@@ -56,12 +56,13 @@ void __fastcall TfrmLogin::btnLoginClick(TObject *Sender)
 //fill the user dropdown list
 void __fastcall TfrmLogin::FormShow(TObject *Sender)
 {
-	ADOTable1->Active=true;
-	while (!ADOTable1->Eof)
+	DataBaseModule->ADOTable_login->Active = false;
+	DataBaseModule->ADOTable_login->Active = true;
+	while (!DataBaseModule->ADOTable_login->Eof)
 	{
-		ddlUser->Items->Add(ADOTable1->FieldByName("user_name")->AsString);
-		ADOTable1->Next();
+		ddlUser->Items->Add(DataBaseModule->ADOTable_login->FieldByName("user_name")->AsString);
+		DataBaseModule->ADOTable_login->Next();
 	}
-	ADOTable1->First();
+	DataBaseModule->ADOTable_login->First();
 }
 //---------------------------------------------------------------------------

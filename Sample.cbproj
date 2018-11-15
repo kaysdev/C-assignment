@@ -108,7 +108,7 @@
     </PropertyGroup>
     <ItemGroup>
         <CppCompile Include="ConnectionDataModule.cpp">
-            <Form>DataModule1</Form>
+            <Form>DataBaseModule</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
             <DependentOn>ConnectionDataModule.h</DependentOn>
@@ -159,11 +159,11 @@
         </PCHCompile>
         <FormResources Include="JobList.dfm"/>
         <FormResources Include="Login.dfm"/>
+        <FormResources Include="Job.dfm"/>
+        <FormResources Include="ConnectionDataModule.dfm"/>
         <FormResources Include="Customer.dfm"/>
         <FormResources Include="CustomerList.dfm"/>
         <FormResources Include="Dashboard.dfm"/>
-        <FormResources Include="Job.dfm"/>
-        <FormResources Include="ConnectionDataModule.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

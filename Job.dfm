@@ -2,7 +2,7 @@ object frmJob: TfrmJob
   Left = 0
   Top = 0
   Caption = 'Job'
-  ClientHeight = 345
+  ClientHeight = 360
   ClientWidth = 330
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -698,61 +698,14 @@ object frmJob: TfrmJob
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object btnSave: TButton
-    Left = 124
-    Top = 315
-    Width = 185
-    Height = 25
-    Caption = 'Save'
-    TabOrder = 0
-    OnClick = btnSaveClick
-  end
-  object PageControl1: TPageControl
-    Left = 5
-    Top = 0
+  object Tab: TPageControl
+    Left = 8
+    Top = 8
     Width = 317
     Height = 309
-    ActivePage = TabSheet1
+    ActivePage = Detail_Tab
     TabOrder = 1
-    object TabSheet2: TTabSheet
-      Caption = 'Time Entry'
-      ImageIndex = 1
-      object lblStartTime: TLabel
-        Left = 20
-        Top = 16
-        Width = 49
-        Height = 13
-        Caption = 'Start Time'
-      end
-      object lblEndTime: TLabel
-        Left = 20
-        Top = 57
-        Width = 43
-        Height = 13
-        Caption = 'End Time'
-      end
-      object DateTimePicker1: TDateTimePicker
-        Left = 112
-        Top = 16
-        Width = 185
-        Height = 21
-        Date = 43396.504786087960000000
-        Time = 43396.504786087960000000
-        Kind = dtkTime
-        TabOrder = 0
-      end
-      object DateTimePicker2: TDateTimePicker
-        Left = 112
-        Top = 57
-        Width = 185
-        Height = 21
-        Date = 43396.504786087960000000
-        Time = 43396.504786087960000000
-        Kind = dtkTime
-        TabOrder = 1
-      end
-    end
-    object TabSheet1: TTabSheet
+    object Detail_Tab: TTabSheet
       Caption = 'Detail'
       object lblCustomer: TLabel
         Left = 60
@@ -806,75 +759,101 @@ object frmJob: TfrmJob
         NumbersOnly = True
         TabOrder = 0
       end
+      object ddlAssigned: TDBLookupComboBox
+        Left = 112
+        Top = 248
+        Width = 185
+        Height = 21
+        DataField = 'assigned_to'
+        KeyField = 'login_id'
+        ListField = 'user_name'
+        ListSource = DataSource_assigned
+        TabOrder = 2
+      end
+      object ddlCustomer: TDBLookupComboBox
+        Left = 112
+        Top = 57
+        Width = 185
+        Height = 21
+        DataField = 'customer_id'
+        KeyField = 'customer_id'
+        ListField = 'first_name'
+        ListSource = DataSource_Customer
+        TabOrder = 3
+      end
+      object ddlStatus: TDBLookupComboBox
+        Left = 112
+        Top = 197
+        Width = 185
+        Height = 21
+        DataField = 'status_id'
+        KeyField = 'status_id'
+        ListField = 'status_name'
+        ListSource = DataSource_Status
+        TabOrder = 4
+      end
+    end
+    object Time_Tab: TTabSheet
+      Caption = 'Time Entry'
+      ImageIndex = 1
+      object lblStartTime: TLabel
+        Left = 20
+        Top = 16
+        Width = 49
+        Height = 13
+        Caption = 'Start Time'
+      end
+      object lblEndTime: TLabel
+        Left = 20
+        Top = 57
+        Width = 43
+        Height = 13
+        Caption = 'End Time'
+      end
+      object DateTimePicker1: TDateTimePicker
+        Left = 112
+        Top = 16
+        Width = 185
+        Height = 21
+        Date = 43396.504786087960000000
+        Time = 43396.504786087960000000
+        Kind = dtkTime
+        TabOrder = 0
+      end
+      object DateTimePicker2: TDateTimePicker
+        Left = 112
+        Top = 57
+        Width = 185
+        Height = 21
+        Date = 43396.504786087960000000
+        Time = 43396.504786087960000000
+        Kind = dtkTime
+        TabOrder = 1
+      end
     end
   end
-  object ddlCustomer: TDBLookupComboBox
-    Left = 121
-    Top = 81
+  object btnSave: TButton
+    Left = 124
+    Top = 323
     Width = 185
-    Height = 21
-    DataField = 'customer_id'
-    KeyField = 'customer_id'
-    ListField = 'first_name'
-    ListSource = DataSource_Customer
-    TabOrder = 2
-  end
-  object ddlStatus: TDBLookupComboBox
-    Left = 121
-    Top = 229
-    Width = 185
-    Height = 21
-    DataField = 'status_id'
-    KeyField = 'status_id'
-    ListField = 'status_name'
-    ListSource = DataSource_Status
-    TabOrder = 3
-  end
-  object ddlAssigned: TDBLookupComboBox
-    Left = 121
-    Top = 272
-    Width = 185
-    Height = 21
-    DataField = 'assigned_to'
-    KeyField = 'login_id'
-    ListField = 'user_name'
-    ListSource = DataSource_assigned
-    TabOrder = 4
-  end
-  object ADOTable_customer: TADOTable
-    Connection = DataModule1.DBConnection
-    CursorType = ctStatic
-    TableName = 'Customer'
-    Left = 16
-    Top = 72
+    Height = 25
+    Caption = 'Save'
+    TabOrder = 0
+    OnClick = btnSaveClick
   end
   object DataSource_Customer: TDataSource
-    DataSet = ADOTable_customer
-    Left = 16
-    Top = 128
-  end
-  object ADOTable_Status: TADOTable
-    Connection = DataModule1.DBConnection
-    CursorType = ctStatic
-    TableName = 'Status'
-    Left = 16
-    Top = 280
+    DataSet = DataBaseModule.ADOTable_Customer
+    Left = 40
+    Top = 144
   end
   object DataSource_Status: TDataSource
-    DataSet = ADOTable_Status
-    Left = 64
-    Top = 288
-  end
-  object ADOTable_assigned: TADOTable
-    Connection = DataModule1.DBConnection
-    CursorType = ctStatic
-    TableName = 'login'
-    Left = 80
-    Top = 184
+    DataSet = DataBaseModule.ADOTable_Status
+    Left = 40
+    Top = 296
   end
   object DataSource_assigned: TDataSource
-    DataSet = ADOTable_assigned
-    Left = 80
-    Top = 248
+    DataSet = DataBaseModule.ADOTable_login
+    Left = 40
+    Top = 200
   end
 end

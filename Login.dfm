@@ -738,14 +738,8 @@ object frmLogin: TfrmLogin
     TabOrder = 0
     Text = 'Select User'
   end
-  object ADOTable1: TADOTable
-    Connection = DataModule1.DBConnection
-    TableName = 'login'
-    Left = 80
-    Top = 64
-  end
   object ADODataSet1: TADODataSet
-    Connection = DataModule1.DBConnection
+    Connection = DataBaseModule.DBConnection
     CommandText = 
       'Select * from login where user_name= :user_name and password = :' +
       'password'

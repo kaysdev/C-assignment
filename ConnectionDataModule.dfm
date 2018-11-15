@@ -1,4 +1,4 @@
-object DataModule1: TDataModule1
+object DataBaseModule: TDataBaseModule
   OldCreateOrder = False
   Height = 362
   Width = 388
@@ -14,5 +14,23 @@ object DataModule1: TDataModule1
     Provider = 'SQLOLEDB.1'
     Left = 32
     Top = 8
+  end
+  object ADOTable_login: TADOTable
+    Connection = DBConnection
+    TableName = 'login'
+    Left = 128
+    Top = 8
+  end
+  object ADOTable_Customer: TADOTable
+    Connection = DBConnection
+    TableName = 'Customer'
+    Left = 240
+    Top = 8
+  end
+  object ADOTable_Status: TADOTable
+    Connection = DBConnection
+    TableName = 'Status'
+    Left = 32
+    Top = 80
   end
 end

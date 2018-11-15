@@ -695,98 +695,39 @@ object fmrJobList: TfmrJobList
     00FFFF0003FFFF8007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   OldCreateOrder = False
   Position = poDesktopCenter
-  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Button1: TButton
+  object BtnAddJob: TButton
     Left = 510
     Top = 8
     Width = 115
     Height = 25
     Caption = 'Add'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = BtnAddJobClick
   end
   object gridJobList: TStringGrid
     Left = 8
     Top = 48
     Width = 617
     Height = 291
-    ColCount = 8
+    ColCount = 11
     RowCount = 1
     FixedRows = 0
     TabOrder = 1
+    OnSelectCell = gridJobListSelectCell
   end
-  object ADOConnection1: TADOConnection
-    Connected = True
-    ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=Firewall#121;Persist Security Info=' +
-      'True;User ID=sa;Initial Catalog=Test;Data Source=KAYS-LPT-15'
-    LoginPrompt = False
-    Provider = 'SQLOLEDB.1'
-    Left = 256
-  end
-  object ADOQuery1: TADOQuery
-    Connection = ADOConnection1
-    CursorType = ctStatic
+  object DataSet_Job: TADODataSet
+    Connection = DataBaseModule.DBConnection
+    CommandText = 
+      'select job_id, job_number,'#13#10'job_description,'#13#10'status_name,'#13#10'user' +
+      '_name, first_name+ '#39' '#39'+last_name as customer,'#13#10's.status_id,'#13#10'c.c' +
+      'ustomer_id,'#13#10'l.login_id,'#13#10'mobile_number,'#13#10'time_spent from job j'#13 +
+      #10'inner join'#13#10'Status s'#13#10'On s.status_id=j.status_id'#13#10'Inner Join'#13#10'l' +
+      'ogin l'#13#10'on l.login_id=j.assigned_to'#13#10'inner join '#13#10'customer c'#13#10'on' +
+      ' c.customer_id=j.customer_id'
     Parameters = <>
-    Prepared = True
-    SQL.Strings = (
-      'SELECT job_id, '
-      'job_number, '
-      'job_description,'
-      ' first_name +'#39' '#39' + last_name as customer_name,'
-      'mobile_number,'
-      'status_name,'
-      'user_name,'
-      'time_spent'
-      'FROM Job jb'
-      'INNER JOIN '
-      'Customer cust'
-      'ON '
-      'jb.customer_id=cust.customer_id'
-      'INNER JOIN'
-      '[Status] st'
-      'ON'
-      'st.status_id=jb.status_id'
-      'INNER JOIN'
-      'login lg'
-      'ON'
-      'lg.login_id=jb.assigned_to')
-    Left = 192
-    object ADOQuery1job_id: TAutoIncField
-      FieldName = 'job_id'
-      ReadOnly = True
-    end
-    object ADOQuery1job_number: TIntegerField
-      FieldName = 'job_number'
-    end
-    object ADOQuery1job_description: TMemoField
-      FieldName = 'job_description'
-      BlobType = ftMemo
-    end
-    object ADOQuery1customer_name: TStringField
-      FieldName = 'customer_name'
-      ReadOnly = True
-      Size = 61
-    end
-    object ADOQuery1mobile_number: TStringField
-      FieldName = 'mobile_number'
-    end
-    object ADOQuery1status_name: TStringField
-      FieldName = 'status_name'
-    end
-    object ADOQuery1user_name: TStringField
-      FieldName = 'user_name'
-      Size = 50
-    end
-    object ADOQuery1time_spent: TFloatField
-      FieldName = 'time_spent'
-    end
-  end
-  object DataSource1: TDataSource
-    DataSet = ADOQuery1
-    Left = 320
-    Top = 8
+    Left = 376
   end
 end

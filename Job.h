@@ -16,29 +16,26 @@ class TfrmJob : public TForm
 {
 __published:	// IDE-managed Components
 	TButton *btnSave;
-	TPageControl *PageControl1;
-	TTabSheet *TabSheet2;
+	TDBLookupComboBox *ddlCustomer;
+	TDataSource *DataSource_Customer;
+	TDataSource *DataSource_Status;
+	TDBLookupComboBox *ddlStatus;
+	TDBLookupComboBox *ddlAssigned;
+	TDataSource *DataSource_assigned;
+	TPageControl *Tab;
+	TTabSheet *Time_Tab;
 	TLabel *lblStartTime;
 	TLabel *lblEndTime;
 	TDateTimePicker *DateTimePicker1;
 	TDateTimePicker *DateTimePicker2;
-	TTabSheet *TabSheet1;
+	TTabSheet *Detail_Tab;
 	TLabel *lblCustomer;
 	TLabel *lblDescription;
 	TLabel *lblStatus;
 	TLabel *lblAssigned;
 	TLabel *lblJobNumber;
-	TEdit *txtJob;
-	TDBLookupComboBox *ddlCustomer;
-	TADOTable *ADOTable_customer;
-	TDataSource *DataSource_Customer;
-	TADOTable *ADOTable_Status;
-	TDataSource *DataSource_Status;
-	TDBLookupComboBox *ddlStatus;
-	TDBLookupComboBox *ddlAssigned;
-	TADOTable *ADOTable_assigned;
-	TDataSource *DataSource_assigned;
 	TMemo *memo1;
+	TEdit *txtJob;
 	void __fastcall btnSaveClick(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations

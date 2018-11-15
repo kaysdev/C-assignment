@@ -55,7 +55,7 @@ void __fastcall TfrmCustomer::btnSaveClick(TObject *Sender)
 							+ "', '" + this->txtLastName->Text + "','"
 							+ this->txtMobileNumber->Text + "');";
 			ADOQuery = new TADOQuery(this);
-			ADOQuery->Connection = DataModule1->DBConnection;
+			ADOQuery->Connection = DataBaseModule->DBConnection;
 
 			ADOQuery->Prepared = true;
 			ADOQuery->SQL->Clear();
@@ -64,32 +64,34 @@ void __fastcall TfrmCustomer::btnSaveClick(TObject *Sender)
 			{
 				ADOQuery->ExecSQL(); // this will save the customer record in database
 				ADOQuery->Close();
-				frmCustomerList->ADOTable1->Active = false;
-				frmCustomerList->ADOTable1->Active = true;
-				frmCustomerList->ADOTable1->Refresh();
-				int rowCounter = 1;
-				frmCustomerList->gridCustomerList->RowCount = frmCustomerList->ADOTable1->RecordCount+1;
+				frmCustomerList->DataSet_Customer->Active = false;
+				frmCustomerList->DataSet_Customer->Active = true;
+				frmCustomerList->DataSet_Customer->Refresh();
 
-				while (!frmCustomerList->ADOTable1->Eof)
+				int rowCounter = 1;
+				frmCustomerList->gridCustomerList->RowCount =
+								DataBaseModule->ADOTable_Customer->RecordCount + 1;
+
+				while (!DataBaseModule->ADOTable_Customer->Eof)
 				{
 					frmCustomerList->gridCustomerList->Cells[0][rowCounter] =
-								frmCustomerList->ADOTable1->
+								frmCustomerList->DataSet_Customer->
 								FieldByName("customer_id")->AsString;
 					frmCustomerList->gridCustomerList->Cells[1][rowCounter] =
-								frmCustomerList->ADOTable1->
+								frmCustomerList->DataSet_Customer->
 								FieldByName("first_name")->AsString;
 					frmCustomerList->gridCustomerList->Cells[2][rowCounter] =
-								frmCustomerList->ADOTable1->
+								frmCustomerList->DataSet_Customer->
 								FieldByName("last_name")->AsString;
 					frmCustomerList->gridCustomerList->Cells[3][rowCounter] =
-								frmCustomerList->ADOTable1->
+								frmCustomerList->DataSet_Customer->
 								FieldByName("mobile_number")->AsString;
 					rowCounter++;
 
-					frmCustomerList->ADOTable1->Next();
+					frmCustomerList->DataSet_Customer->Next();
 				}
 				frmCustomerList->gridCustomerList->Refresh();
-				frmCustomerList->ADOTable1->First();
+				frmCustomerList->DataSet_Customer->First();
 
 				ShowMessage("Record Saved");
 				frmCustomer->Close();

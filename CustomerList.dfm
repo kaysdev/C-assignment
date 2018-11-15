@@ -724,11 +724,11 @@ object frmCustomerList: TfrmCustomerList
       64
       64)
   end
-  object ADOTable1: TADOTable
-    Connection = DataModule1.DBConnection
+  object DataSet_Customer: TADODataSet
+    Connection = DataBaseModule.DBConnection
     CursorType = ctStatic
-    TableName = 'Customer'
-    Left = 240
-    Top = 16
+    CommandText = 'Select * from customer'
+    Parameters = <>
+    Left = 200
   end
 end

@@ -7,15 +7,18 @@
 #include <Data.DB.hpp>
 #include <Data.Win.ADODB.hpp>
 //---------------------------------------------------------------------------
-class TDataModule1 : public TDataModule
+class TDataBaseModule : public TDataModule
 {
 __published:	// IDE-managed Components
 	TADOConnection *DBConnection;
+	TADOTable *ADOTable_login;
+	TADOTable *ADOTable_Customer;
+	TADOTable *ADOTable_Status;
 private:	// User declarations
 public:		// User declarations
-	__fastcall TDataModule1(TComponent* Owner);
+	__fastcall TDataBaseModule(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TDataModule1 *DataModule1;
+extern PACKAGE TDataBaseModule *DataBaseModule;
 //---------------------------------------------------------------------------
 #endif

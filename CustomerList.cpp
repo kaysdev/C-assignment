@@ -41,8 +41,8 @@ void __fastcall TfrmCustomerList::gridCustomerListSelectCell(TObject *Sender,
 void __fastcall TfrmCustomerList::FormShow(TObject *Sender)
 {
 	//to display the column name in TStringGrid
-	ADOTable1->Active = false;
-	ADOTable1->Active = true;
+	DataBaseModule->ADOTable_Customer->Active = false;
+	DataBaseModule->ADOTable_Customer->Active = true;
 	gridCustomerList->Cells[0][0] = "Customer Id";
 	gridCustomerList->ColWidths[0] = 80;
 	gridCustomerList->Cells[1][0] = "First Name";
@@ -52,23 +52,24 @@ void __fastcall TfrmCustomerList::FormShow(TObject *Sender)
 	gridCustomerList->Cells[3][0] = "Mobile Number";
 	gridCustomerList->ColWidths[3] = 100;
 	int rowCounter = 1;
-	gridCustomerList->RowCount = ADOTable1->RecordCount+1;
+    DataSet_Customer->Active = true;
+	gridCustomerList->RowCount = DataSet_Customer->RecordCount + 1;
 	//to fill customer data in the TStringGrid
-	while (!ADOTable1->Eof)
+	while (!DataSet_Customer->Eof)
 	{
 		gridCustomerList->Cells[0][rowCounter] =
-					ADOTable1->FieldByName("customer_id")->AsString;
+					DataSet_Customer->FieldByName("customer_id")->AsString;
 		gridCustomerList->Cells[1][rowCounter] =
-					ADOTable1->FieldByName("first_name")->AsString;
+					DataSet_Customer->FieldByName("first_name")->AsString;
 		gridCustomerList->Cells[2][rowCounter] =
-					ADOTable1->FieldByName("last_name")->AsString;
+					DataSet_Customer->FieldByName("last_name")->AsString;
 		gridCustomerList->Cells[3][rowCounter] =
-					ADOTable1->FieldByName("mobile_number")->AsString;
+					DataSet_Customer->FieldByName("mobile_number")->AsString;
 		rowCounter++;
-		ADOTable1->Next();
+		DataSet_Customer->Next();
 	}
 
-	ADOTable1->First();
+	DataSet_Customer->First();
 }
 //---------------------------------------------------------------------------
 

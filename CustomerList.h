@@ -17,7 +17,7 @@ class TfrmCustomerList : public TForm
 __published:	// IDE-managed Components
 	TButton *btnAddNew;
 	TStringGrid *gridCustomerList;
-	TADOTable *ADOTable1;
+	TADODataSet *DataSet_Customer;
 	void __fastcall btnAddNewClick(TObject *Sender);
 	void __fastcall gridCustomerListSelectCell(TObject *Sender, int ACol, int ARow,
           bool &CanSelect);

@@ -18,7 +18,6 @@ __published:	// IDE-managed Components
 	TLabel *lblPassword;
 	TEdit *txtPassword;
 	TButton *btnLogin;
-	TADOTable *ADOTable1;
 	TComboBox *ddlUser;
 	TADODataSet *ADODataSet1;
 	void __fastcall btnLoginClick(TObject *Sender);

@@ -8,10 +8,11 @@
 #pragma package(smart_init)
 #pragma classgroup "Vcl.Controls.TControl"
 #pragma resource "*.dfm"
-TDataModule1 *DataModule1;
+TDataBaseModule *DataBaseModule;
 //---------------------------------------------------------------------------
-__fastcall TDataModule1::TDataModule1(TComponent* Owner)
+__fastcall TDataBaseModule::TDataBaseModule(TComponent* Owner)
 	: TDataModule(Owner)
 {
 }
 //---------------------------------------------------------------------------
+
